@@ -1,4 +1,6 @@
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import {  Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(
+    private httpClient : HttpClient,
+    private router : Router
+  ) { }
+  email : string = "";
+  password : string = "";
+  userObj : any;
   ngOnInit(): void {
+    if(window.localStorage.getItem('userId')){
+      this.router.navigate(['/home']);
+    }
   }
-
+  login(){
+    if(this.email && this.password){
+      let obj = {
+        emailId : this.email,
+        password : this.password
+      }
+      const headers= new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
+        this.httpClient.post(`https://fifthfloor.herokuapp.com/validUser`,obj,{headers : headers }).subscribe((details : any)=>{
+          this.userObj = details;
+          window.localStorage.setItem('userId', details.userId);
+          window.localStorage.setItem('name', details.userName);
+          window.localStorage.setItem('img', details.img);
+          this.router.navigate(['/home']);
+        });
+    }
+    else{
+      alert("something wrong...!")
+    }
+  }
 }

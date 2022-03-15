@@ -11,9 +11,10 @@
         </div>
         <div class="buttons">
             <button class="btn-item">
-                <a class="a-t"  [routerLink]="['/viewDetails', user.userId]" (click)="viewDetails(user.userId)" routerLinkActive="active" >View</a>
+                <a class="a-t"  [routerLink]="['/viewDetails', user.userId]" routerLinkActive="active" >View</a>
             </button>
-            <button class="btn-item add">+ Add</button>
+            <button *ngIf="userId == user.userId" class="btn-item add">
+                <a class="a-t"  [routerLink]="['/addForm']" routerLinkActive="active" >+ Add</a></button>
         </div>
     </div>
 </div>

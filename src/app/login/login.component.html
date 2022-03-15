@@ -1,11 +1,11 @@
 <div>
 <div class="form">
     <div class="im-par">
-        <input type="email" class="ip" placeholder="Enter Email">
-        <input type="password" class="ip" placeholder="Enter password">
+        <input type="email" class="ip" [(ngModel)]="email" placeholder="Enter Email">
+        <input type="password" class="ip" [(ngModel)]="password" placeholder="Enter password">
     </div>
     <div>
-        <button class="btn-login">Login</button>
+        <button class="btn-login" (click)="login()">Login</button>
     </div>
 </div>
 </div>

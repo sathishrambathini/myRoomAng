@@ -1,8 +1,9 @@
 <div>
     <div class="nav">
+        <p style="color: red; font-weight: bold;margin: 0;" (click)="logout()">logout</p>
     </div>
     <div class="pro-pic-nav">
-        <img class="img" src="https://static.onecompiler.com/images/users/3vajrrqa3/p1559115996.jpg" height="60" width="60"/>
-        <p class="name">Sathish</p>
+        <img class="img" [src]="imgUrl" height="60" width="60"/>
+        <p class="name">{{userName}}</p>
     </div>
 </div>

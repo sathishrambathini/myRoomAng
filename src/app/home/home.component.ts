@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 // import { Observable } from 'rxjs';
 
 export interface Users{
@@ -19,19 +20,24 @@ export interface Users{
 })
 export class HomeComponent implements OnInit {
   users : Users[] = [];
+  userId : any;
   constructor(
-    private httpClient : HttpClient
+    private httpClient : HttpClient,
+    private router : Router
   ) { }
 
   ngOnInit(): void {
-  const headers= new HttpHeaders()
-  .set('content-type', 'application/json')
-  .set('Access-Control-Allow-Origin', '*');
-    this.httpClient.get('https://fifthfloor.herokuapp.com/fetchAllUsers',{ 'headers': headers }).subscribe((users : any)=>{
-      this.users = users;
-    })
-  }
-  viewDetails(id:number){
-    console.log(id)
-  }
+    this.userId = window.localStorage.getItem('userId');
+    if(this.userId){
+      const headers= new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
+        this.httpClient.get('https://fifthfloor.herokuapp.com/fetchAllUsers').subscribe((users : any)=>{
+          this.users = users;
+        })
+      }
+      else{
+        this.router.navigate(['/login'])
+      }
+    }
 }
