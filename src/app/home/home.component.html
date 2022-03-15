@@ -1,0 +1,16 @@
+<div class="card" >
+    <div class="img" *ngFor="let user of users">
+        <div>
+            <img class="img-i" [src]="user?.img" height="70rem" width="70rem"/>
+              
+        </div>
+        <div>
+            <p class="name">{{user?.userName}}</p> 
+            <p class="name">Paid {{user?.spentAmount}} /-</p>   
+        </div>
+        <div class="buttons">
+            <button class="btn-item">View</button>
+            <button class="btn-item add">Add</button>
+        </div>
+    </div>
+</div>
