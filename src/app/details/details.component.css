@@ -1,0 +1,49 @@
+.img-i{
+    border-radius: 20px;
+    margin: 5px 0 0 5px;
+}
+.img{
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    background: #233a44;;
+    background-size: cover;
+    box-shadow: 1px 3px;
+    display: flex;
+    height: 100px;
+    align-items: center;
+    justify-content: space-between;
+}
+.name{
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    margin: 6px 0 6px 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.buttons{
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.btn-item{
+    height: 35px;
+    width: 60px;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    border: 0px;
+}
+.add{
+    margin-top: 10px;
+    background-color: orangered;
+}
+.a-t{
+    text-decoration: none;
+    color: white;
+}
+.edit{
+    background-color: yellowgreen;
+}

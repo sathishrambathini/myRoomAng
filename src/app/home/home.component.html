@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="card" >
     <div class="img" *ngFor="let user of users">
         <div>
@@ -9,8 +10,10 @@
             <p class="name">Paid {{user?.spentAmount}} /-</p>   
         </div>
         <div class="buttons">
-            <button class="btn-item">View</button>
-            <button class="btn-item add">Add</button>
+            <button class="btn-item">
+                <a class="a-t"  [routerLink]="['/viewDetails', user.userId]" (click)="viewDetails(user.userId)" routerLinkActive="active" >View</a>
+            </button>
+            <button class="btn-item add">+ Add</button>
         </div>
     </div>
 </div>

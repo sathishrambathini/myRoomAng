@@ -1,1 +1,20 @@
-<p>details works!</p>
+<app-navbar></app-navbar>
+<div class="card" >
+    <div class="img" *ngFor="let detail of details">
+        <!-- <div>
+            <img class="img-i" [src]="user?.img" height="70rem" width="70rem"/>
+              
+        </div> -->
+        <div>
+            <p class="name">amount {{detail?.amount}} /-</p> 
+            <p class="name">description : {{detail?.description}}</p>
+            <p class="name">date : {{detail?.createdDate}}</p>
+        </div>
+<!-- {{details | json}} -->
+        <div class="buttons">
+            <button class="btn-item edit" (click)="updateOrDelete()">Edit
+            </button>
+            <button class="btn-item add" (click)="updateOrDelete()">Delete</button>
+        </div>
+    </div>
+</div>

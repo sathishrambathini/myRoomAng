@@ -31,5 +31,7 @@ export class HomeComponent implements OnInit {
       this.users = users;
     })
   }
-
+  viewDetails(id:number){
+    console.log(id)
+  }
 }
