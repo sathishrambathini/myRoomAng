@@ -1,21 +1,23 @@
 <app-navbar></app-navbar>
-<div class="card" >
-    <div class="img" *ngFor="let detail of details">
-        <!-- <div>
-            <img class="img-i" [src]="user?.img" height="70rem" width="70rem"/>
-              
-        </div> -->
-        <div>
-            <p class="name">Item : {{detail?.itemName}}</p> 
-            <p class="name">amount : {{detail?.amount}} /-</p> 
-            <p class="name">description : {{detail?.description}}</p>
-            <p class="name">date : {{detail?.createdDate}}</p>
-        </div>
-<!-- {{details | json}} -->
-        <div class="buttons" *ngIf="userId == detail.userId">
-            <button class="btn-item edit" (click)="updateOrDelete(detail)">Edit
-            </button>
-            <button class="btn-item add" (click)="delete(detail)">Delete</button>
+<div class="card">
+    <div *ngIf="details.length > 0;else nodata">
+        <div class="img" *ngFor="let detail of details">
+            <div>
+                <p class="name">Item : {{detail?.itemName}}</p> 
+                <p class="name">amount : {{detail?.amount}} /-</p> 
+                <p class="name">description : {{detail?.description}}</p>
+                <p class="name">date : {{detail?.createdDate}}</p>
+            </div>
+            <div class="buttons" *ngIf="userId == detail.userId">
+                <button class="btn-item edit" (click)="updateOrDelete(detail)">Edit
+                </button>
+                <button class="btn-item add" (click)="delete(detail)">Delete</button>
+            </div>
         </div>
     </div>
+    <ng-template #nodata>
+        <div class="no-data">
+            <img class="no-data-img" src="https://cdn.dribbble.com/users/3005912/screenshots/12003163/media/3f9413e9dc5736a539ae7f426dfe7832.jpg" height="120" width="150">
+        </div>
+    </ng-template>
 </div>

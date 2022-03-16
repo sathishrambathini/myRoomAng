@@ -47,3 +47,14 @@
 .edit{
     background-color: yellowgreen;
 }
+.no-data{
+    height: 70vh;
+    align-items: center;
+    display: flex;
+}
+.no-data-img{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    left: 30%;
+}
