@@ -46,7 +46,20 @@ export class DetailsComponent implements OnInit {
     // alert("comming soon!");
   }
   delete(details:any){
-    alert("comming soon!");
+    let isDelete = window.confirm("Are you sure you want to delete...!");
+    if(isDelete){
+      let obj = {
+        id : details.id,
+      }
+      const headers= new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
+        this.httpClient.post(`https://fifthfloor.herokuapp.com/deleteById`,obj,{ 'headers': headers }).subscribe((details : any)=>{
+          if(details){
+            this.router.navigate(['/home']);
+          } 
+        });
+    }
   }
 
 }
