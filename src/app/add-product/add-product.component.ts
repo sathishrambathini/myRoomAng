@@ -1,6 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonService } from '../common.service';
+
+export interface User{
+  userId: number;
+  itemName: string;
+  description: string;
+  amount: number;
+  createdDate: string;
+  id? : string
+}
 
 @Component({
   selector: 'app-add-product',
@@ -11,35 +21,58 @@ export class AddProductComponent implements OnInit {
 
   constructor(
     private httpClient : HttpClient,
-    private router : Router
+    private router : Router,
+    private routerA : ActivatedRoute,
+    private commonSerive : CommonService
   ) { }
   isSumit = false;
+  isUpdate = false;
   product : any;
   purpose: any;
   amount : any;
   date : any;
-  userId : any
+  userId : any;
+  id : any;
+
   ngOnInit(): void {
     this.userId = window.localStorage.getItem('userId');
     if(!this.userId){
         this.router.navigate(['/login'])
     }
+    this.routerA.params.subscribe(params => {
+        let type = params['val'];
+        if(type === 'update'){
+          this.isUpdate = true;
+          let obj = this.commonSerive.formObj;
+          this.product = obj.itemName;
+          this.amount = obj.amount;
+          this.date = obj.createdDate;
+          this.purpose = obj.description;
+          this.userId = obj.userId;
+          this.id = obj.id;
+        }
+        else{
+          this.isUpdate = false;
+        }
+    });
   }
-  Submit(){
+  Submit(isUpdate = false){
     this.isSumit = true;
     if(this.product && this.purpose && this.amount && this.date){
       this.userId = window.localStorage.getItem('userId');
-      let formObj = {
+      var formObj : User = {
         userId: parseInt(this.userId),
         itemName: this.product,
         description: this.purpose,
         amount: this.amount,
-        createdDate: this.date
+        createdDate: this.date,
     }
+    isUpdate ? formObj.id = this.id : null;
+    let endPoint = !isUpdate ? 'insertProductDetails' : 'updateproductDetails';
     const headers= new HttpHeaders()
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*');
-      this.httpClient.post(`https://fifthfloor.herokuapp.com/insertProductDetails`,formObj,{headers : headers }).subscribe((details : any)=>{
+      this.httpClient.post(`https://fifthfloor.herokuapp.com/${endPoint}`,formObj,{headers : headers }).subscribe((details : any)=>{
         if(details){
           this.isSumit = false;
           this.router.navigate(['/home']);
@@ -54,5 +87,9 @@ export class AddProductComponent implements OnInit {
       this.isSumit = false;
       alert("fill all details");
     }
+  }
+  update(){
+    console.log("updated clicked");
+    this.Submit(true);
   }
 }

@@ -13,6 +13,9 @@ const routes: Routes = [
     path : 'login', component : LoginComponent,
   },
   {
+    path : 'addForm/:val', component : AddProductComponent,
+  },
+  {
     path : 'addForm', component : AddProductComponent,
   },
   {

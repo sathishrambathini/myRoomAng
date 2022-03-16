@@ -13,9 +13,9 @@
         </div>
 <!-- {{details | json}} -->
         <div class="buttons" *ngIf="userId == detail.userId">
-            <button class="btn-item edit" (click)="updateOrDelete()">Edit
+            <button class="btn-item edit" (click)="updateOrDelete(detail)">Edit
             </button>
-            <button class="btn-item add" (click)="updateOrDelete()">Delete</button>
+            <button class="btn-item add" (click)="delete(detail)">Delete</button>
         </div>
     </div>
 </div>

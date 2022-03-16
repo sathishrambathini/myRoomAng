@@ -8,7 +8,7 @@
             <input type="date" style="width: 100%;" class="ip" [(ngModel)]="date" placeholder="please select date">
         </div>
         <div>
-            <button class="btn-login" [ngClass]="{'login-disable' : isSumit}" [disabled]="isSumit" (click)="Submit()">Submit</button>
+            <button class="btn-login" [ngClass]="{'login-disable' : isSumit}" [disabled]="isSumit" (click)="isUpdate ? update() : Submit()">Submit</button>
         </div>
     </div>
     </div>

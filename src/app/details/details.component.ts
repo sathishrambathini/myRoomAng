@@ -1,6 +1,7 @@
 import { HttpHeaders,HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommonService } from '../common.service';
 
 @Component({
   selector: 'app-details',
@@ -14,6 +15,7 @@ export class DetailsComponent implements OnInit {
     private httpClient : HttpClient,
     private route : ActivatedRoute,
     private router : Router,
+    private commonService : CommonService
   ) { }
 
   ngOnInit(): void {
@@ -34,12 +36,16 @@ export class DetailsComponent implements OnInit {
     else{
       this.router.navigate(['/login'])
     }
-
-
   }
 
-  updateOrDelete(){
-    alert("comming soon!")
+  updateOrDelete(detail:any){
+    console.log(detail);
+    this.commonService.formObj = detail;
+    this.router.navigate(['/addForm/update']);
+    // alert("comming soon!");
+  }
+  delete(details:any){
+    alert("comming soon!");
   }
 
 }
