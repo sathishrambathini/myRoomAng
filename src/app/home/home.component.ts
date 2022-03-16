@@ -45,6 +45,13 @@ export class HomeComponent implements OnInit {
       }
     }
     clearData(){
-      
+      let num = Math.random().toFixed();
+      let ans = window.prompt("enter number below "+num);
+      if(num == ans){
+        alert("deleted succesfully!");
+      }
+      else{
+        alert("wrong number entered");
+      }
     }
 }
