@@ -18,4 +18,7 @@
                 <a class="a-t"  [routerLink]="['/addForm']" routerLinkActive="active" >+ Add</a></button>
         </div>
     </div>
+    <div *ngIf="role  === 'admin'" class="rolee">
+        <button class="clear-all" (click)="clearData()">Clear All</button>
+    </div>
 </div>

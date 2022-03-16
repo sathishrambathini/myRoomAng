@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   users : Users[] = [];
   userId : any;
   name : any;
+  role : any;
   constructor(
     private httpClient : HttpClient,
     private router : Router
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.name = window.localStorage.getItem('name')
     this.userId = window.localStorage.getItem('userId');
+    this.role = window.localStorage.getItem('role');
     if(this.userId){
       const headers= new HttpHeaders()
       .set('content-type', 'application/json')
@@ -41,5 +43,8 @@ export class HomeComponent implements OnInit {
       else{
         this.router.navigate(['/login'])
       }
+    }
+    clearData(){
+      
     }
 }

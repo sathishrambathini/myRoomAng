@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
           window.localStorage.setItem('userId', details.userId);
           window.localStorage.setItem('name', details.userName);
           window.localStorage.setItem('img', details.img);
+          window.localStorage.setItem('role', details.role);
           this.router.navigate(['/home']);
         }
         else{

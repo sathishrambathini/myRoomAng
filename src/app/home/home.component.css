@@ -43,9 +43,9 @@
     text-decoration: none;
     color: white;
 }
-.card{
+/* .card{
     background-color: black;
-}
+} */
 .view{
     background-color: deeppink;
 }
@@ -53,4 +53,18 @@
     font-size: 15px;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.clear-all{
+    width: 150px;
+    height: 30px;
+    background: orangered;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+.rolee{
+    float: right;
+    margin: 10px;
 }
