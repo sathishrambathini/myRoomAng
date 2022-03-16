@@ -2,10 +2,10 @@
 <div>
     <div class="form">
         <div class="im-par">
-            <input type="text" class="ip" [(ngModel)]="product" placeholder="Product name">
-            <input type="text" class="ip" [(ngModel)]="purpose" placeholder="Writer purpose">
-            <input type="number" class="ip" [(ngModel)]="amount" placeholder="Enter amount">
-            <input type="date" class="ip" [(ngModel)]="date" placeholder="please select date">
+            <input type="text" class="ip" [(ngModel)]="product" style="width: 100%;" placeholder="Product name">
+            <input type="text" class="ip" style="width: 100%;" [(ngModel)]="purpose" placeholder="Writer purpose">
+            <input type="number" style="width: 100%;" class="ip" [(ngModel)]="amount" placeholder="Enter amount">
+            <input type="date" style="width: 100%;" class="ip" [(ngModel)]="date" placeholder="please select date">
         </div>
         <div>
             <button class="btn-login" [disabled]="isSumit" (click)="Submit()">Submit</button>

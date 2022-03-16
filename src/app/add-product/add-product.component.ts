@@ -20,6 +20,10 @@ export class AddProductComponent implements OnInit {
   date : any;
   userId : any
   ngOnInit(): void {
+    this.userId = window.localStorage.getItem('userId');
+    if(!this.userId){
+        this.router.navigate(['/login'])
+    }
   }
   Submit(){
     this.isSumit = true;

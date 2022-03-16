@@ -18,10 +18,13 @@ export class NavbarComponent implements OnInit {
     this.userName = window.localStorage.getItem('name');
   }
   logout(){
-    window.localStorage.removeItem('name');
-    window.localStorage.removeItem('userId');
-    window.localStorage.removeItem('img');
-    this.router.navigate(['/login']);
+    let isLogout = window.confirm("Are you sure you want to logout");
+    if(isLogout){
+      window.localStorage.removeItem('name');
+      window.localStorage.removeItem('userId');
+      window.localStorage.removeItem('img');
+      this.router.navigate(['/login']);
+    }
   }
 
 }
