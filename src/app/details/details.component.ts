@@ -41,6 +41,7 @@ export class DetailsComponent implements OnInit {
   updateOrDelete(detail:any){
     console.log(detail);
     this.commonService.formObj = detail;
+    window.localStorage.setItem('obj',JSON.stringify(detail));
     this.router.navigate(['/addForm/update']);
     // alert("comming soon!");
   }

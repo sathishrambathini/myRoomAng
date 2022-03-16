@@ -42,6 +42,9 @@ export class AddProductComponent implements OnInit {
     this.routerA.params.subscribe(params => {
         let type = params['val'];
         if(type === 'update'){
+          if(!this.commonSerive.formObj){
+            this.commonSerive.formObj = JSON.parse(window.localStorage.getItem('obj') as any);
+          }
           this.isUpdate = true;
           let obj = this.commonSerive.formObj;
           this.product = obj.itemName;
@@ -74,10 +77,14 @@ export class AddProductComponent implements OnInit {
     .set('Access-Control-Allow-Origin', '*');
       this.httpClient.post(`https://fifthfloor.herokuapp.com/${endPoint}`,formObj,{headers : headers }).subscribe((details : any)=>{
         if(details){
+          this.commonSerive.formObj = {};
+          window.localStorage.removeItem('obj');
           this.isSumit = false;
           this.router.navigate(['/home']);
         }
         else{
+          this.commonSerive.formObj = {};
+          window.localStorage.removeItem('obj');
           this.isSumit = false;
           this.router.navigate(['/home']);
         }
