@@ -8,7 +8,7 @@ import {  Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  isLogin = false;
   constructor(
     private httpClient : HttpClient,
     private router : Router
@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     }
   }
   login(){
+    this.isLogin = true;
     if(this.email && this.password){
       let obj = {
         emailId : this.email,
@@ -31,14 +32,23 @@ export class LoginComponent implements OnInit {
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
         this.httpClient.post(`https://fifthfloor.herokuapp.com/validUser`,obj,{headers : headers }).subscribe((details : any)=>{
+        if(details){
+          this.isLogin = false;
           this.userObj = details;
           window.localStorage.setItem('userId', details.userId);
           window.localStorage.setItem('name', details.userName);
           window.localStorage.setItem('img', details.img);
           this.router.navigate(['/home']);
-        });
+        }
+        else{
+          this.isLogin = false;
+          alert("wrong credentials");
+        }  
+      });
+        
     }
     else{
+      this.isLogin = false;
       alert("something wrong...!")
     }
   }

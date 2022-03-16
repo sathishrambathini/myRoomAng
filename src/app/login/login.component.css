@@ -29,3 +29,6 @@
     border-radius: 5px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+.login-disable{
+    opacity: 0.5;
+}

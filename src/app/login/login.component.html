@@ -5,7 +5,7 @@
         <input type="password" class="ip" [(ngModel)]="password" placeholder="Enter password">
     </div>
     <div>
-        <button class="btn-login" (click)="login()">Login</button>
+        <button class="btn-login" [ngClass]="{'login-disable' : isLogin}" [disabled]="isLogin" (click)="login()">Login</button>
     </div>
 </div>
 </div>
