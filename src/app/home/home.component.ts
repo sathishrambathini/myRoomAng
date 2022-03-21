@@ -33,18 +33,15 @@ export class HomeComponent implements OnInit {
     this.userId = window.localStorage.getItem('userId');
     this.role = window.localStorage.getItem('role');
     if(this.userId){
-      const headers= new HttpHeaders()
-      .set('content-type', 'application/json')
-      .set('Access-Control-Allow-Origin', '*');
-        this.httpClient.get('https://fifthfloor.herokuapp.com/fetchAllUsers').subscribe((users : any)=>{
-          this.users = users;
-        })
-      }
+      this.getUsers();
+    }
       else{
         this.router.navigate(['/login'])
       }
     }
+    isDelete : boolean = false;
     clearData(){
+      this.isDelete = true;
       let num = Math.floor(Math.random() * 10000).toFixed();
       let ans = window.prompt("enter number below "+num);
       if(num == ans){
@@ -54,13 +51,24 @@ export class HomeComponent implements OnInit {
           .set('Access-Control-Allow-Origin', '*');
             this.httpClient.get('https://fifthfloor.herokuapp.com/deleteallproducts').subscribe((data : any)=>{
               alert("datelered Succesfully...");
+              this.getUsers();
+              this.isDelete = false;
             })
           }
       }
       else{
         alert("wrong number entered");
+        this.isDelete = false;
       }
     }
+    getUsers(){
+      const headers= new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
+        this.httpClient.get('https://fifthfloor.herokuapp.com/fetchAllUsers').subscribe((users : any)=>{
+          this.users = users;
+        })
+      }
     getBill(){
       if(this.userId){
         const headers= new HttpHeaders()

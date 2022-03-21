@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       }
       const headers= new HttpHeaders()
       .set('content-type', 'application/json')
-      .set('Access-Control-Allow-Origin', '*');
+      // .set('Access-Control-Allow-Origin', '*');
         this.httpClient.post(`https://fifthfloor.herokuapp.com/validUser`,obj,{headers : headers }).subscribe((details : any)=>{
         if(details){
           this.isLogin = false;
