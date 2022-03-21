@@ -30,7 +30,7 @@ export class DetailsComponent implements OnInit {
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
         this.httpClient.get(`https://fifthfloor.herokuapp.com/userDetails/${id}`,{ 'headers': headers }).subscribe((details : any)=>{
-          this.details = details;
+        this.details = details;
         });
     }
     else{
@@ -38,6 +38,18 @@ export class DetailsComponent implements OnInit {
     }
   }
 
+  padTo2Digits(num:any) {
+    return num.toString().padStart(2, '0');
+  }
+  
+  formatDate(date:any) {
+    return [
+      date.getFullYear(),
+      this.padTo2Digits(date.getMonth() + 1),
+      this.padTo2Digits(date.getDate()),
+    ].join('-');
+  }
+  
   updateOrDelete(detail:any){
     console.log(detail);
     this.commonService.formObj = detail;

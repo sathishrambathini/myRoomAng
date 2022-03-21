@@ -45,13 +45,30 @@ export class HomeComponent implements OnInit {
       }
     }
     clearData(){
-      let num = Math.random().toFixed();
+      let num = Math.floor(Math.random() * 10000).toFixed();
       let ans = window.prompt("enter number below "+num);
       if(num == ans){
-        alert("deleted succesfully!");
+        if(this.userId){
+          const headers= new HttpHeaders()
+          .set('content-type', 'application/json')
+          .set('Access-Control-Allow-Origin', '*');
+            this.httpClient.get('https://fifthfloor.herokuapp.com/deleteallproducts').subscribe((data : any)=>{
+              alert("datelered Succesfully...");
+            })
+          }
       }
       else{
         alert("wrong number entered");
       }
+    }
+    getBill(){
+      if(this.userId){
+        const headers= new HttpHeaders()
+        .set('content-type', 'application/json')
+        .set('Access-Control-Allow-Origin', '*');
+          this.httpClient.get('https://fifthfloor.herokuapp.com/orders/check/pdf').subscribe((users : any)=>{
+            this.users = users;
+          })
+        }
     }
 }

@@ -21,4 +21,7 @@
     <div *ngIf="role  === 'admin'" class="rolee">
         <button class="clear-all" (click)="clearData()">Clear All</button>
     </div>
+    <div *ngIf="users.length" class="rolee">
+        <button class="get-pdf"><a href="https://fifthfloor.herokuapp.com/orders/check/pdf" style="text-decoration: none;color: white;">Get Bill</a></button>
+    </div>
 </div>

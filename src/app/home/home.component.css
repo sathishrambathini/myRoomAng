@@ -68,3 +68,13 @@
     float: right;
     margin: 10px;
 }
+.get-pdf{
+    width: 150px;
+    height: 35px;
+    background: rgb(9, 128, 72);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
