@@ -4,7 +4,9 @@
         <input type="email" class="ip" [(ngModel)]="email" placeholder="Enter Email">
         <input type="password" class="ip" [(ngModel)]="password" placeholder="Enter password">
     </div>
-    <div>
+    <div style="display: flex;
+    flex-direction: row-reverse;">
+        <a routerLink="/forgot-pwd" style="margin-left: 5px;align-items: center;display: flex;">forgot password?</a>
         <button class="btn-login" [ngClass]="{'login-disable' : isLogin}" [disabled]="isLogin" (click)="login()">Login</button>
     </div>
 </div>
