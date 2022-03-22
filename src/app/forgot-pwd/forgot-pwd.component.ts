@@ -50,6 +50,16 @@ export class ForgotPwdComponent implements OnInit {
     }
   }
   confirmOtp(){
-    this.router.navigate(['/login'])
+    let obj = {
+      emailId : this.email,
+      password : this.pwd2
+    };
+    const headers= new HttpHeaders()
+    .set('content-type', 'application/json')
+      this.httpClient.post(`https://fifthfloor.herokuapp.com/updatePwd`,obj,{headers : headers }).subscribe((data : any)=>{
+        if(data){
+          this.router.navigate(['/login']);
+        }
+    })
   }
 }
