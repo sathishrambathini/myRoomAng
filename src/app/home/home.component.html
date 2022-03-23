@@ -1,27 +1,36 @@
 <app-navbar></app-navbar>
-<marquee behavior="scroll" direction="left" class="marque-text"> <span style="color: red;">*imp</span> Hey {{name}}, You can use this applcation now for your usage...!</marquee>
-<div class="card" >
-    <div class="img" *ngFor="let user of users">
-        <div>
-            <img class="img-i" [src]="user?.img" height="70rem" width="70rem"/>
-              
-        </div>
-        <div>
-            <p class="name">{{user?.userName}}</p> 
-            <p class="name">Paid {{user?.spentAmount}} /-</p>   
-        </div>
-        <div class="buttons">
-            <button class="btn-item view">
-                <a class="a-t"  [routerLink]="['/viewDetails', user.userId]" routerLinkActive="active" >View</a>
-            </button>
-            <button *ngIf="userId == user.userId" class="btn-item add">
-                <a class="a-t"  [routerLink]="['/addForm']" routerLinkActive="active" >+ Add</a></button>
-        </div>
-    </div>
-    <div *ngIf="role  === 'admin'" class="rolee">
-        <button [ngClass]="{'delete-all' : isDelete}" [disabled]="isDelete" class="clear-all" (click)="clearData()">Clear All</button>
-    </div>
-    <div *ngIf="users.length" class="rolee">
-        <button class="get-pdf"><a href="https://fifthfloor.herokuapp.com/orders/check/pdf" style="text-decoration: none;color: white;">Get Bill</a></button>
-    </div>
+<!-- <marquee behavior="scroll" direction="left" class="marque-text"> <span style="color: red;">*imp</span> Hey {{name}}, You can use this applcation now for your usage...!</marquee> -->
+<div style="margin-top: 10px;">
+    <button class="btn-r dsh" [ngClass]="{'bg-active' : isDashbord}" (click)="isDashbord = !isDashbord">Dashboard</button>
+    <button class="btn-r home" [ngClass]="{'bg-active' : !isDashbord}" (click)="isDashbord = !isDashbord">Home</button>
 </div>
+
+<div style="margin-top: 50px;" [ngClass]="{'display-none' : !isDashbord, 'display-block' : isDashbord}">
+    <canvas id="myChart" width="400" height="400"></canvas>
+</div>
+
+    <div class="card" [ngClass]="{'display-none' : isDashbord, 'display-block' : !isDashbord}">
+        <div class="img" *ngFor="let user of users">
+            <div>
+                <img class="img-i" [src]="user?.img" height="70rem" width="70rem"/>
+                  
+            </div>
+            <div>
+                <p class="name">{{user?.userName}}</p> 
+                <p class="name">Paid {{user?.spentAmount}} /-</p>   
+            </div>
+            <div class="buttons">
+                <button class="btn-item view">
+                    <a class="a-t"  [routerLink]="['/viewDetails', user.userId]" routerLinkActive="active" >View</a>
+                </button>
+                <button *ngIf="userId == user.userId" class="btn-item add">
+                    <a class="a-t"  [routerLink]="['/addForm']" routerLinkActive="active" >+ Add</a></button>
+            </div>
+        </div>
+        <div *ngIf="role  === 'admin'" class="rolee">
+            <button [ngClass]="{'delete-all' : isDelete}" [disabled]="isDelete" class="clear-all" (click)="clearData()">Clear All</button>
+        </div>
+        <div *ngIf="users.length" class="rolee">
+            <button class="get-pdf"><a href="https://fifthfloor.herokuapp.com/orders/check/pdf" style="text-decoration: none;color: white;">Get Bill</a></button>
+        </div>
+    </div>

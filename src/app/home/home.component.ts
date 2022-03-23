@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Chart } from 'chart.js';
 // import { Observable } from 'rxjs';
 
 export interface Users{
@@ -18,17 +19,27 @@ export interface Users{
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit {
   users : Users[] = [];
   userId : any;
   name : any;
   role : any;
+  isDashbord : boolean = true;
+  myChart : any;
   constructor(
     private httpClient : HttpClient,
     private router : Router
   ) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+
+
+
+    
+  
+  
+  
+  
     this.name = window.localStorage.getItem('name')
     this.userId = window.localStorage.getItem('userId');
     this.role = window.localStorage.getItem('role');
@@ -67,6 +78,44 @@ export class HomeComponent implements OnInit {
       .set('Access-Control-Allow-Origin', '*');
         this.httpClient.get('https://fifthfloor.herokuapp.com/fetchAllUsers').subscribe((users : any)=>{
           this.users = users;
+          const canvas = <HTMLCanvasElement> document.getElementById('myChart');
+          const ctx : any = canvas.getContext('2d');
+          this.myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: users.map((item:any)=>{ return item.userName}),
+                datasets: [{
+                    label: 'Investment',
+                    data: users.map((item:any)=>{ return item.spentAmount}),
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(105, 180, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    // y: {
+                    //     beginAtZero: false
+                    // }
+                }
+            }
+            })
+          this.myChart.data.labels = users.map((item:any)=>{ return item.userName});
+          this.myChart.data.datasets[0].data = users.map((item:any)=>{ return item.spentAmount});
         })
       }
     getBill(){
