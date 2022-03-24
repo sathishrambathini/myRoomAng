@@ -24,6 +24,7 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     this.searchControl.valueChanges.subscribe((val)=>{
       if(val){
+        val = val.toLocaleLowerCase()
         this.searchResults = this.details.filter((item:any)=>{
           if(item.itemName.toLocaleLowerCase().includes(val) || item.amount.toString().toLocaleLowerCase().includes(val) || item.description.toLocaleLowerCase().includes(val)){
               return item;

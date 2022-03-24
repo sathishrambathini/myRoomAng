@@ -1,7 +1,8 @@
 <app-navbar></app-navbar>
 <div class="card">
-    <form>
-        <mat-form-field class="search" appearance="outline">
+    <form style="    display: flex;
+    justify-content: center;" *ngIf="this.details?.length > 0">
+        <mat-form-field class="search" appearance="outline" style="width: 95%;">
             <!-- <mat-label>Email</mat-label> -->
             <input [formControl]="searchControl" matInput placeholder="Search any key...">
           </mat-form-field>

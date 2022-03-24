@@ -25,7 +25,7 @@ export class HomeComponent implements AfterViewInit {
   name : any;
   role : any;
   isPie : boolean = true;
-  isDashbord : boolean = true;
+  isDashbord : boolean = false;
   myChart : any;
   constructor(
     private httpClient : HttpClient,
