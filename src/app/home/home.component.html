@@ -1,12 +1,21 @@
 <app-navbar></app-navbar>
 <!-- <marquee behavior="scroll" direction="left" class="marque-text"> <span style="color: red;">*imp</span> Hey {{name}}, You can use this applcation now for your usage...!</marquee> -->
 <div style="margin-top: 10px;">
-    <button class="btn-r dsh" [ngClass]="{'bg-active' : isDashbord}" (click)="isDashbord = !isDashbord">Dashboard</button>
-    <button class="btn-r home" [ngClass]="{'bg-active' : !isDashbord}" (click)="isDashbord = !isDashbord">Home</button>
+    <button class="btn-r dsh" [ngClass]="{'bg-active' : isDashbord}" (click)="isDashbord = true">Dashboard</button>
+    <button class="btn-r home" [ngClass]="{'bg-active' : !isDashbord}" (click)="isDashbord = false">Home</button>
 </div>
 
 <div style="margin-top: 50px;" [ngClass]="{'display-none' : !isDashbord, 'display-block' : isDashbord}">
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <div style="margin-top: 10px;">
+        <button style="border-radius: 25px;background: #fc729b;" class="btn-r dsh" [ngClass]="{'bg-active' : isPie}" (click)="isPie = true" >BAR</button>
+        <button style="background: yellowgreen;border-radius: 25px" class="btn-r home" [ngClass]="{'bg-active' : !isPie}" (click)="isPie = false">PIE</button>
+    </div>
+    <div [ngClass]="{'display-none' : !isPie , 'display-block' : isPie}">
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+    <div [ngClass]="{'display-none' : isPie, 'display-block' : !isPie}">
+        <canvas  id="myChart1" width="400" height="400"></canvas>
+    </div>
 </div>
 
     <div class="card" [ngClass]="{'display-none' : isDashbord, 'display-block' : !isDashbord}">
