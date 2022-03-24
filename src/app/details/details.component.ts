@@ -1,5 +1,6 @@
 import { HttpHeaders,HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from '../common.service';
 
@@ -10,7 +11,9 @@ import { CommonService } from '../common.service';
 })
 export class DetailsComponent implements OnInit {
   details : any;
-  userId : any
+  userId : any;
+  searchResults : any;
+  searchControl = new FormControl('');
   constructor(
     private httpClient : HttpClient,
     private route : ActivatedRoute,
@@ -19,7 +22,18 @@ export class DetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.searchControl.valueChanges.subscribe((val)=>{
+      if(val){
+        this.searchResults = this.details.filter((item:any)=>{
+          if(item.itemName.toLocaleLowerCase().includes(val) || item.amount.toString().toLocaleLowerCase().includes(val) || item.description.toLocaleLowerCase().includes(val)){
+              return item;
+          }
+        })
+      }
+      else{
+        this.searchResults = [...this.details];
+      }
+    })
     this.userId = window.localStorage.getItem('userId');
     if(this.userId){
       let id;
@@ -31,6 +45,7 @@ export class DetailsComponent implements OnInit {
       .set('Access-Control-Allow-Origin', '*');
         this.httpClient.get(`https://fifthfloor.herokuapp.com/userDetails/${id}`,{ 'headers': headers }).subscribe((details : any)=>{
         this.details = details;
+        this.searchResults = details;
         });
     }
     else{

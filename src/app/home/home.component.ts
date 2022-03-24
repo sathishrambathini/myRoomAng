@@ -33,14 +33,6 @@ export class HomeComponent implements AfterViewInit {
   ) { }
 
   ngAfterViewInit(): void {
-
-
-
-    
-  
-  
-  
-  
     this.name = window.localStorage.getItem('name')
     this.userId = window.localStorage.getItem('userId');
     this.role = window.localStorage.getItem('role');

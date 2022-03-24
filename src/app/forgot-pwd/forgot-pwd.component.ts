@@ -50,16 +50,21 @@ export class ForgotPwdComponent implements OnInit {
     }
   }
   confirmOtp(){
-    let obj = {
-      emailId : this.email,
-      password : this.pwd2
-    };
-    const headers= new HttpHeaders()
-    .set('content-type', 'application/json')
-      this.httpClient.post(`https://fifthfloor.herokuapp.com/updatePwd`,obj,{headers : headers }).subscribe((data : any)=>{
-        if(data){
-          this.router.navigate(['/login']);
-        }
-    })
+    if(this.pwd1 === this.pwd2){
+      let obj = {
+        emailId : this.email,
+        password : this.pwd2
+      };
+      const headers= new HttpHeaders()
+      .set('content-type', 'application/json')
+        this.httpClient.post(`https://fifthfloor.herokuapp.com/updatePwd`,obj,{headers : headers }).subscribe((data : any)=>{
+          if(data){
+            this.router.navigate(['/login']);
+          }
+      })
+    }
+    else{
+      alert("Not matched or invalid...")
+    }
   }
 }
