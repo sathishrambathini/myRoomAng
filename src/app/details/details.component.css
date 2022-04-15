@@ -25,6 +25,7 @@
     margin-right: 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 }
 .btn-item{
     height: 35px;

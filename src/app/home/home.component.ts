@@ -70,7 +70,12 @@ export class HomeComponent implements AfterViewInit {
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
         this.httpClient.get('https://fifthfloor.herokuapp.com/fetchAllUsers').subscribe((users : any)=>{
-          this.users = users;
+        let userid = window.localStorage.getItem('userId');
+        let indx = users.findIndex((uesr:any)=>uesr.userId == userid);
+        let loggedUser = users[indx];
+        users.splice(indx,1);
+        users.unshift(loggedUser);
+        this.users = users;
           const canvas = <HTMLCanvasElement> document.getElementById('myChart');
           const ctx : any = canvas.getContext('2d');
           this.myChart = new Chart(ctx, {

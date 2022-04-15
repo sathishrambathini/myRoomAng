@@ -16,10 +16,14 @@ export class LoginComponent implements OnInit {
   email : string = "";
   password : string = "";
   userObj : any;
+  showPwd = false;
   ngOnInit(): void {
     if(window.localStorage.getItem('userId')){
       this.router.navigate(['/home']);
     }
+  }
+  showHidePwd(){
+    this.showPwd = !this.showPwd;
   }
   login(){
     this.isLogin = true;
